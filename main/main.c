@@ -5,7 +5,7 @@
 #include <string.h>
 #include "driver/uart.h"
 #include "esp32hwcontext.h"
-#include "hwcontext.h"
+#include "../components/hwcontext/include/hwcontext.h"
 #include "appcontext.h"
 #include "shell.h"
 #include "u8g2_esp32_hal.h"

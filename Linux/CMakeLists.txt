@@ -12,12 +12,13 @@ include_directories(
 
     include
     ../components/hwcontext/include
+    ../components/hwcontext/linux/include
     ../components/ui/include
 )
 
 set(LINUX_SOURCES
     main.c
-    hwcontext.c
+    ../components/hwcontext/linux/hwcontext.c
 )
 
 add_executable(ihc-badge-linux ${LINUX_SOURCES})

@@ -1,1 +1,2 @@
-# Default
+COMPONENT_SRCDIRS := esp32
+COMPONENT_ADD_INCLUDEDIRS := esp32/include include
