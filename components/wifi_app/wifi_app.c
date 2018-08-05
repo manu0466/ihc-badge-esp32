@@ -5,13 +5,14 @@
 #include "wifimanager.h"
 #include "hwcontext.h"
 
-#define CHOICES_ENTRIES 3
+#define CHOICES_ENTRIES 4
 
 #define ENABLE_ENTRY 0
 #define DISABLE_ENTRY 1
 #define STATUS_ENTRY 2
+#define SCAN_ENTRY 3
 
-
+void wifi_scan_app(struct AppContext *appctx);
 
 void wifi_app(struct AppContext *appctx) {
 
@@ -21,7 +22,8 @@ void wifi_app(struct AppContext *appctx) {
     const char *const choices[] = {
             "Enable",
             "Disable",
-            "Status"
+            "Status",
+            "Scan"
     };
 
     int choice;
@@ -47,7 +49,7 @@ void wifi_app(struct AppContext *appctx) {
                     ui_show_message(hwcontext, "Wi-Fi already disabled");
                 }
             }break;
-            case STATUS_ENTRY: {
+            case STATUS_ENTRY:
                 switch(ws->status) {
                     case DISABLED:
                         ui_show_message(hwcontext, "Wi-Fi Disabled");
@@ -65,7 +67,10 @@ void wifi_app(struct AppContext *appctx) {
                         ui_show_message(hwcontext, "Got ip!");
                         break;
                 }
-            }break;
+                break;
+            case SCAN_ENTRY:
+                wifi_scan_app(appctx);
+                break;
         }
     } while (choice >= 0);
 

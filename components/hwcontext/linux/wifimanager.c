@@ -2,6 +2,8 @@
 #include "sdlhwcontext.h"
 #include <stdlib.h>
 #include <memory.h>
+#include <linuxwifimanager.h>
+#include <wifimanager.h>
 
 WifiManager_t* wifi_manager_create() {
     WifiManager_t* instance = malloc(sizeof(WifiManager_t));
@@ -42,4 +44,23 @@ void wifi_manager_set_enabled(void *wifi_manager, uint8_t enabled) {
 
 const WifiStationStatus_t* wifi_manager_get_wifi_status(void *wifi_manager) {
     return &((WifiManager_t*)wifi_manager)->currentStatus;
+}
+
+int wifi_manager_perform_scan(void *wifi_manager, void (*call_back)(int, ScanResult_t*)) {
+
+    ScanResult_t *result = malloc(sizeof(ScanResult_t) * 2);
+    result[0].auth_mode = WIFI_AUTH_OPEN;
+    strncpy(result[0].ssid, "OPEN AP 1234567890123456678", sizeof(result[0].ssid) - 1);
+    result[0].rssi = -55;
+
+    result[1].auth_mode = WIFI_AUTH_WPA2_PSK;
+    strncpy(result[1].ssid, "WPA2 AP", sizeof(result[1].ssid) - 1);
+    result[1].rssi = -55;
+
+    call_back(2, result);
+    return WIFI_OK;
+}
+
+int wifi_manager_stop_scan(void *wifi_manager) {
+    return WIFI_OK;
 }

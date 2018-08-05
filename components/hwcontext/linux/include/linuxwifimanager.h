@@ -3,7 +3,7 @@
 
 #include "wifimanager.h"
 
-typedef struct WifiManager {
+typedef struct {
     WifiStationStatus_t currentStatus;
 } WifiManager_t;
 

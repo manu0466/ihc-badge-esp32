@@ -13,7 +13,7 @@ endif()
 
 set(WIFI_APP_SOURCES
         wifi_app.c
-        wifi_status_app.c
+        wifi_scan_app.c
 )
 
 add_library(wifi_app ${WIFI_APP_SOURCES})

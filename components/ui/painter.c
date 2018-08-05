@@ -5,10 +5,8 @@
 #include <stdint.h>
 #include <stdio.h>
 
-#define WIDTH (84 + 4) // last pixels are discarded
-#define HEIGHT 48
-
-#define MAX_SCREEN_TEXT_ROWS (48 / 8)
+#define WIDTH (PAINTER_SCREEN_WIDTH + 4) // last pixels are discarded
+#define HEIGHT PAINTER_SCREEN_HEIGHT
 
 #define CHECK_BOUNDS() \
     if ((x < 0) || (x + width > PAINTER_SCREEN_WIDTH) || (y < 0) ||  (y + height > PAINTER_SCREEN_HEIGHT)) { \
@@ -131,7 +129,7 @@ void painter_draw_xbm(void *hwcontext, const unsigned char *img_bits, int x, int
 }
 
 void painter_draw_cropped_text(void *hwcontext, int x, int row, int x_bound, int y_row_bound, const char *text, int style, int color) {
-    if ((row < 0) || (row > MAX_SCREEN_TEXT_ROWS))
+    if ((row < 0) || (row > PAINTER_MAX_TEXT_ROWS))
         return;
 
     const int *offsets;
@@ -190,7 +188,7 @@ void painter_draw_cropped_text(void *hwcontext, int x, int row, int x_bound, int
 
 void painter_draw_bounded_text(void *hwcontext, int x, int row, int x_bound, int y_row_bound, const char *text, int style, int color)
 {
-    if ((row < 0) || (row > MAX_SCREEN_TEXT_ROWS)) {
+    if ((row < 0) || (row > PAINTER_MAX_TEXT_ROWS)) {
         fprintf(stderr, "Skipping draw text outside bounds\n");
         return;
     }
@@ -246,7 +244,7 @@ void painter_draw_bounded_text(void *hwcontext, int x, int row, int x_bound, int
 
 void painter_draw_text(void *hwcontext, int x, int row, const char *text, int style, int color)
 {
-    painter_draw_bounded_text(hwcontext, x, row, PAINTER_SCREEN_WIDTH, MAX_SCREEN_TEXT_ROWS, text, style, color);
+    painter_draw_bounded_text(hwcontext, x, row, PAINTER_SCREEN_WIDTH, PAINTER_MAX_TEXT_ROWS, text, style, color);
 }
 
 int painter_painted_text_width(const char *text, int style)

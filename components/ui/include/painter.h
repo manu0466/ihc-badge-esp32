@@ -10,6 +10,8 @@
 #define PAINTER_SCREEN_WIDTH 84
 #define PAINTER_SCREEN_HEIGHT 48
 
+#define PAINTER_MAX_TEXT_ROWS (PAINTER_SCREEN_HEIGHT / 8)
+
 void painter_clear_screen(void *hwcontext);
 void painter_draw_h_line(void *hwcontext, int x, int y, int width, int color);
 void painter_draw_v_line(void *hwcontext, int x, int y, int height, int color);
