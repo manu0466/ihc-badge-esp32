@@ -86,3 +86,8 @@ void hwcontext_send_command(void *hwcontext, const char *command, const char *co
     UNUSED(command);
     UNUSED(command_args);
 }
+
+void *hwcontext_get_wifi_manager(void *hwcontext) {
+    struct HWContext *hw = (struct HWContext *) hwcontext;
+    return hw->wifi_manager;
+}

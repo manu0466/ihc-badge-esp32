@@ -129,3 +129,8 @@ void hwcontext_send_command(void *hwcontext, const char *command, const char *co
     uart_write_bytes(UART_NUM_0, command, strlen(command));
     uart_write_bytes(UART_NUM_0, command_args, strlen(command_args));
 }
+
+void *hwcontext_get_wifi_manager(void *hwcontext) {
+    struct HWContext *hw = (struct HWContext *) hwcontext;
+    return hw->wifi_manager;
+}

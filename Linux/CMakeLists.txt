@@ -19,6 +19,7 @@ include_directories(
 set(LINUX_SOURCES
     main.c
     ../components/hwcontext/linux/hwcontext.c
+    ../components/hwcontext/linux/wifimanager.c
 )
 
 add_executable(ihc-badge-linux ${LINUX_SOURCES})
@@ -26,6 +27,7 @@ add_executable(ihc-badge-linux ${LINUX_SOURCES})
 target_link_libraries(ihc-badge-linux
     # Apps
     settings_app
+    wifi_app
     games_app
     snake_app
 

@@ -7,18 +7,21 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define CHOICES_ENTRIES 1
+#define CHOICES_ENTRIES 2
 
 #define SET_NAME_ENTRY 0
+#define WIFI_ENTRY 1
 
 static void set_name(struct AppContext *appctx);
+void wifi_app(struct AppContext *appctx);
 
 void settings_main(struct AppContext *appctx)
 {
     void *hwcontext = appctx->hwcontext;
 
     const char *const choices[] = {
-        "Set name"
+        "Set name",
+        "Wi-Fi"
     };
 
     int choice;
@@ -27,6 +30,9 @@ void settings_main(struct AppContext *appctx)
         switch(choice) {
             case SET_NAME_ENTRY:
                 set_name(appctx);
+                break;
+            case WIFI_ENTRY:
+                wifi_app(appctx);
                 break;
         }
     } while (choice >= 0);
@@ -43,3 +49,5 @@ static void set_name(struct AppContext *appctx)
         hwcontext_set_nv_string(hwcontext, "user_name", new_name);
     }
 }
+
+

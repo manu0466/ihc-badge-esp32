@@ -100,6 +100,7 @@ int main(int argc, char* argv[])
     hw->screen_buf = screen_buf;
     memset(hw->screen_buf, 0, (WIDTH * HEIGHT / 8));
     hw->data_fd = fds[0];
+    hw->wifi_manager = wifi_manager_create();
 
     struct AppContext *appctx = malloc(sizeof(struct AppContext));
     appctx->hwcontext = hw;

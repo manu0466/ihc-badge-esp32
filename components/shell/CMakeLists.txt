@@ -29,6 +29,7 @@ target_link_libraries(shell
     messages_app
     interp_app
     settings_app
+    wifi_app
     games_app
     phonebook_app
     snake_app
